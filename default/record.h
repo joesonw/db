@@ -3,12 +3,13 @@
 #include "../core/record.h"
 #include <iostream>
 using std::ostream;
+using db::core::BaseField;
 class Record:public db::core::BaseRecord {
   public:
 	Record(db::core::BaseField*,any);	
 	~Record();
-	db::core::BaseRecord* operator+(any);
 	string print();
+    BaseRecord* operator+(any);	
 };
 
 #endif

@@ -1,8 +1,9 @@
 #ifndef _DB_RECORD_H_
-#define _DB_RECORD_H
+#define _DB_RECORD_H_
 #include "field.h"
 #include <iostream>
 #include <sstream>
+#include "error.h"
 
 namespace db {
 namespace core {
@@ -16,12 +17,13 @@ namespace core {
 			_value=value;
 		}
 		virtual ~BaseRecord() {}
-		virtual BaseRecord* operator+(any)=0;
 		virtual string print()=0;
 		virtual any value() {return _value;}
+		virtual BaseRecord* operator+(any)=0;
 	};
 
 };
 };
+
 
 #endif

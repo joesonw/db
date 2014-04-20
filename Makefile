@@ -1,5 +1,5 @@
-FLAGS=-std=c++11 
-CXX=clang++
+FLAGS=-std=c++0x
+CXX=g++
 prog:	main.cpp field.o record.o
 	 $(CXX) $(FLAGS) -g main.cpp field.o record.o -o prog -lboost_system
 

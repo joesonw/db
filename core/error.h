@@ -12,32 +12,35 @@ namespace core {
 
 	class Error{
 	  protected:
-		struct tm * _time;
+		time_t _time;
 		string _message;
 	  public:
 		Error(string message):_message(message) {
-			time_t t = std::time(0);
-			_time=std::localtime(&t);
+			_time = std::time(0);
+		}
+		Error(const Error &another) {
+			_message=another._message;
+			_time=another._time;
 		}
 		string what() {
 			return _message;
 		}
-		struct tm* time() {
+		time_t time() {
 			return _time;
 		}
 		string datetime() {
+			struct tm *t = localtime(&_time);
 			std::stringstream ss;
-			ss<<(_time->tm_year+1900)<<"-";
-			ss<<(_time->tm_mon+1)<<"-";
-			ss<<_time->tm_mday<<" ";
-			ss<<_time->tm_hour<<":";
-			ss<<_time->tm_min<<":";
-			ss<<_time->tm_sec;
+			ss<<(t->tm_year+1900)<<"-";
+			ss<<(t->tm_mon+1)<<"-";
+			ss<<t->tm_mday<<" ";
+			ss<<t->tm_hour<<":";
+			ss<<t->tm_min<<":";
+			ss<<t->tm_sec;
+			delete t;
 			return ss.str();
 		}
 		~Error() {
-			delete _time;
-			_time=0;
 		}
 	};
 

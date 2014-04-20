@@ -56,7 +56,7 @@ any IntegerField::__add__(any a,any b) {
 		int t2=boost::any_cast<int>(b);
 		return t1+t2;
 	} else {
-		throw new db::core::Error("input is no valid2");
+		throw db::core::Error("input is no valid2");
 	}
 	return NULL;
 }
